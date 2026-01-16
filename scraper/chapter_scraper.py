@@ -133,6 +133,8 @@ def fetch_chapter(ch_no, max_retries=2):
 def build_pdf(chapters, start, end):
     filename = f"{chat_id}__{safe_title}_{start}_to_{end}.pdf"
     path = os.path.join(cfg.OUTPUT_DIR, filename)
+    # Create a backups folder if it doesn't exist
+    os.makedirs("backups", exist_ok=True)
     backupPath = os.path.join("backups", filename)
 
     logger.info(f"[JOB {job_id}] Writing PDF: {filename}")
