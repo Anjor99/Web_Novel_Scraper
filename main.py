@@ -1,13 +1,15 @@
 import subprocess
+import os
 from bot.bot import run_bot
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 if __name__ == "__main__":
-    # Start auto sender in background
     subprocess.Popen(
         ["python", "-m", "bot.auto_send"],
-        stdout=open("logs/auto_send.log", "a"),
-        stderr=open("logs/auto_send_error.log", "a")
+        cwd=PROJECT_ROOT,  # 👈 THIS IS THE FIX
+        stdout=open(os.path.join(PROJECT_ROOT, "logs/auto_send.log"), "a"),
+        stderr=open(os.path.join(PROJECT_ROOT, "logs/auto_send_error.log"), "a"),
     )
 
-    # Start Telegram bot
     run_bot()
