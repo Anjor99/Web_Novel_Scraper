@@ -1,4 +1,5 @@
 # WebNovel PDF Telegram Bot
+[![Telegram](https://img.shields.io/badge/Telegram-Open%20Bot-blue?logo=telegram)](https://t.me/Anjor_pdf_buddy_bot)
 
 A production-grade, job-based Telegram bot that scrapes web novels chapter-by-chapter, generates professional PDFs, and delivers them directly to users with real-time progress tracking and automatic fault recovery.
 
