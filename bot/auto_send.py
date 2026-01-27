@@ -36,21 +36,23 @@ def send_file(chat_id, file_path, display_name, retries=3):
                 data = {"chat_id": chat_id, "caption": display_name}
 
                 r = requests.post(
-                    url, files=files, data=data, timeout=120
+                    url,
+                    files=files,
+                    data=data,
+                    timeout=(10, 180),
+                    headers={"Connection": "close"}
                 )
 
             if r.status_code == 200:
                 logger.info(f"📤 Sent to chat {chat_id}: {display_name}")
                 return True
             else:
-                logger.error(
-                    f"❌ Send failed (attempt {attempt}): {r.text}"
-                )
+                logger.error(f"❌ Send failed (attempt {attempt}): {r.text}")
 
         except requests.exceptions.RequestException as e:
             logger.error(f"⚠️ Attempt {attempt} failed: {e}")
 
-        time.sleep(5)
+        time.sleep(8)   # slower retry
 
     return False
 
